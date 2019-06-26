@@ -1,0 +1,30 @@
+<div class="pageDiv" th:fragment="html">
+    <nav>
+        <ul class="pagination">
+            <!--首页  pagination.first调用的是pageFromJPA.isFirst()-->
+            <li :class="{ disabled: pagination.first }">
+                <a href="#nowhere" @click="jump('first')">«</a>
+            </li>
+            <!--下一页-->
+            <li :class="{ disabled: !pagination.hasPrevious }">
+                <a href="#nowhere" @click="jump('pre')">‹</a>
+            </li>
+
+            <!--中间页数迭代-->
+            <li v-for="i in pagination.navigatepageNums">
+                <a href="#nowhere" @click="jumpByNumber(i-1)">
+                    {{i}}
+                </a>
+            </li>
+
+            <!--下一页 ：（disabled: !pagination.hasNext 判断是否有下一页）-->
+            <li :class="{ disabled: !pagination.hasNext }">
+                <a href="#nowhere" @click="jump('next')">›</a>
+            </li>
+            <!--末页-->
+            <li :class="{ disabled: pagination.last }">
+                <a href="#nowhere" @click="jump('last')">»</a>
+            </li>
+        </ul>
+    </nav>
+</div>
